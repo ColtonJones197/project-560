@@ -21,11 +21,11 @@
 
 <div>
     <h1>List of titled players</h1>
-    <button on:click={fetchButtonClick}>{buttonText}</button>
+    <button class="waves-effect waves-light btn" aria-roledescription="getter" on:click={fetchButtonClick}>{buttonText}</button>
     {#if players !== null}
-        <ul>
+        <ul class="collection">
             {#each players as player}
-                <li>{player}</li>
+                <li class="collection-item">{player}</li>
             {/each}
         </ul>
     {/if}
