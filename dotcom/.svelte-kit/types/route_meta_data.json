@@ -10,5 +10,6 @@
 	],
 	"/sverdle/how-to-play": [
 		"src/routes/sverdle/how-to-play/+page.ts"
-	]
+	],
+	"/titled-players": []
 }
