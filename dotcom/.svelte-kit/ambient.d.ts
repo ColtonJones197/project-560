@@ -44,7 +44,7 @@ declare module '$env/static/private' {
 	export const DiskuvOCamlVersion: string;
 	export const DriverData: string;
 	export const EDITOR: string;
-	export const EFC_2460: string;
+	export const EFC_23704: string;
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
 	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GIT_ASKPASS: string;
@@ -162,7 +162,7 @@ declare module '$env/dynamic/private' {
 		DiskuvOCamlVersion: string;
 		DriverData: string;
 		EDITOR: string;
-		EFC_2460: string;
+		EFC_23704: string;
 		FPS_BROWSER_APP_PROFILE_STRING: string;
 		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GIT_ASKPASS: string;
