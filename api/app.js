@@ -79,8 +79,8 @@ const sqlConfig = {
 async function attemptConnection() {
     try{
         console.log("trying!");
-        await sql.connect("Driver=msnodesqlv8;Server=DESKTOP-VT4KSCJ\\SQLEXPRESS;Database=WideWorldImporters;UID=botdave;PWD=Blizzardisgay!1;Encrypt=true");
-        const result = await sql.query('SELECT * FROM Sales.Orders O WHERE O.OrderID = 1;');
+        await sql.connect("Server=DESKTOP-VT4KSCJ\\SQLEXPRESS;Database=ChessLocal;Integrated Security=SSPI;Encrypt=False");
+        const result = await sql.query('SELECT Username, Avatar FROM Chesscom.Player');
         console.dir(result);
     } catch(err) {
         console.log("Connection failed");

@@ -1,4 +1,4 @@
-﻿namespace netapi
+﻿namespace netapi.Models
 {
     public class Player
     {
