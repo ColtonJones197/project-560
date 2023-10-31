@@ -10,10 +10,12 @@ namespace netapi.Controllers
     {
         private readonly IConfiguration _configuration;
 
+        private const string connectionString = @"Server=DESKTOP-VT4KSCJ\SQLEXPRESS;Database=ChessLocal;Integrated Security=SSPI;Encrypt=False";
+
         [HttpGet()]
         public IReadOnlyList<Player> GetPlayers()
         {
-            var players = new SqlPlayerRepository(@"Server=DESKTOP-VT4KSCJ\SQLEXPRESS;Database=ChessLocal;Integrated Security=SSPI;Encrypt=False").RetrievePlayers();
+            var players = new SqlPlayerRepository(connectionString).RetrievePlayers();
             return players;
         }
 
@@ -25,7 +27,13 @@ namespace netapi.Controllers
                 return BadRequest();
             }
 
-            
+            var created = new SqlPlayerRepository(connectionString).CreatePlayer(
+                player.Username, 
+                player.ChesscomId,
+                player.Avatar,
+                player.Title,
+                player.Status,
+                player.Name);
 
             return NoContent();
         }
