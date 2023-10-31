@@ -11,6 +11,6 @@ namespace netapi
         IReadOnlyList<Player> RetrievePlayers();
         Player GetPlayer(int ChesscomdId);
         Player GetPlayer(string Username);
-        Player CreatePlayer(string username, uint chesscomId, string? avatar, string? title, string? status, string? name);
+        Player CreatePlayer(string username, int chesscomId, string? avatar, string? title, string? status, string? name);
     }
 }

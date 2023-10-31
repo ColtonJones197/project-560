@@ -1,6 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using netapi.Models;
 using System.Data;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.AspNetCore.Http.HttpResults;
+using System.Transactions;
 
 namespace netapi
 {
@@ -9,14 +12,39 @@ namespace netapi
 
         private readonly string connectionString;
 
-        public SqlPlayerRepository(string connectionString) 
+        public SqlPlayerRepository(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        public Player CreatePlayer(string username, uint chesscomId, string? avatar, string? title, string? status, string? name)
+        public Player CreatePlayer(string username, int chesscomId, string? avatar, string? title, string? status, string? name)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException("The parameter cannot be null or empty", nameof(username));
+
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Chesscom.CreatePlayer", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("Username", username);
+                        command.Parameters.AddWithValue("ChesscomId", chesscomId);
+                        command.Parameters.AddWithValue("Avatar", avatar);
+                        command.Parameters.AddWithValue("Title", title);
+                        command.Parameters.AddWithValue("Status", status);
+                        command.Parameters.AddWithValue("Name", name);
+
+                        //var p = command.Parameters //might want to add an output to the procedure
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        transaction.Complete();
+                        return new Player(username, chesscomId, avatar, title, status, name);
+                    }
+                }
+            }
         }
 
         public Player GetPlayer(int ChesscomdId)
@@ -33,7 +61,7 @@ namespace netapi
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                using (var command = new SqlCommand("Chesscom.CreatePlayer", connection))
+                using (var command = new SqlCommand("Chesscom.RetrievePlayers", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -57,7 +85,7 @@ namespace netapi
             var statusOrd = reader.GetOrdinal("Status");
             var nameOrd = reader.GetOrdinal("Name");
 
-            while(reader.Read())
+            while (reader.Read())
             {
                 players.Add(new Player(
                     reader.GetString(usernameOrd),
