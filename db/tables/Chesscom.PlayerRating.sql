@@ -14,7 +14,9 @@ CREATE TABLE Chesscom.PlayerRating(
     ChessBullet INT,
     ChessBlitz INT,
     Tactics INT,
-    Fide INT
+    Fide INT,
+    CreatedOn DATETIMEOFFSET DEFAULT(SYSDATETIMEOFFSET()),
+    UpdatedOn DATETIMEOFFSET DEFAULT(SYSDATETIMEOFFSET()),
 
     FOREIGN KEY (PlayerId) REFERENCES Chesscom.Player(PlayerId)
 );

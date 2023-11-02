@@ -12,7 +12,7 @@ namespace netapi.Controllers
 
         private const string connectionString = @"Server=DESKTOP-VT4KSCJ\SQLEXPRESS;Database=ChessLocal;Integrated Security=SSPI;Encrypt=False";
 
-        [HttpGet()]
+        [HttpGet("AllPlayers")]
         public IReadOnlyList<Player> GetPlayers()
         {
             var players = new SqlPlayerRepository(connectionString).RetrievePlayers();

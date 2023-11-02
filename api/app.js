@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const sql = require('mssql');
 require('dotenv').config();
 //console.log(process.env);
 
@@ -62,20 +61,6 @@ app.use(cors());
 //   connection.execSql(request)
 // }
 
-sql.on('error', (err) => {
-  console.log(err);
-});
-
-const sqlConfig = {
-    user: process.env.DB_USER,
-    password: process.env.DB_PWD,
-    database: process.env.DB_WIDE,
-    server: process.env.DB_HOST,
-    options: {
-        encrypt: true,
-        trustServerCertificate: true
-    }
-}
 async function attemptConnection() {
     try{
         console.log("trying!");
@@ -87,17 +72,6 @@ async function attemptConnection() {
         console.log(err);
     }
 }
-
-app.get("/", (req, res) => {
-    res.send({something: "hi mom"});
-  });
-
-app.post("/player", (req, res) => {
-
-
-    
-    res.send("valid");
-});
   
 app.listen(8081, () => {
 console.log("App's running on port 8081");
