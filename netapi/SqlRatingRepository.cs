@@ -5,11 +5,11 @@ using System.Transactions;
 
 namespace netapi
 {
-    public class RatingRepository : IRatingRepository
+    public class SqlRatingRepository : IRatingRepository
     {
         private readonly string connectionString;
 
-        public RatingRepository(string connectionString)
+        public SqlRatingRepository(string connectionString)
         {
             this.connectionString = connectionString;
         }
