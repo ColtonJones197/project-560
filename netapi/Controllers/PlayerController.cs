@@ -27,13 +27,14 @@ namespace netapi.Controllers
                 return BadRequest();
             }
 
-            var created = new SqlPlayerRepository(connectionString).CreatePlayer(
+            Player created = await Task.Run(() => new SqlPlayerRepository(connectionString).CreatePlayer(
                 player.Username, 
                 player.ChesscomId,
                 player.Avatar,
                 player.Title,
                 player.Status,
-                player.Name);
+                player.Name)
+            );
 
             return NoContent();
         }

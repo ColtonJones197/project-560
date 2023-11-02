@@ -37,11 +37,17 @@ namespace netapi
                         command.Parameters.AddWithValue("Status", status);
                         command.Parameters.AddWithValue("Name", name);
 
+                        var p = command.Parameters.Add("PlayerId", SqlDbType.Int);
+                        p.Direction = ParameterDirection.Output;
+
                         //var p = command.Parameters //might want to add an output to the procedure
                         connection.Open();
                         command.ExecuteNonQuery();
                         transaction.Complete();
-                        return new Player(username, chesscomId, avatar, title, status, name);
+
+                        var playerId = (int)command.Parameters["PlayerId"].Value;
+
+                        return new Player(playerId, username, chesscomId, avatar, title, status, name);
                     }
                 }
             }
@@ -77,7 +83,7 @@ namespace netapi
         {
             var players = new List<Player>();
 
-            //var playerIdOrd = reader.GetOrdinal("PlayerId");
+            var playerIdOrd = reader.GetOrdinal("PlayerId");
             var usernameOrd = reader.GetOrdinal("Username");
             var chesscomIdOrd = reader.GetOrdinal("ChesscomId");
             var avatarOrd = reader.GetOrdinal("Avatar");
@@ -88,6 +94,7 @@ namespace netapi
             while (reader.Read())
             {
                 players.Add(new Player(
+                    reader.GetInt32(playerIdOrd),
                     reader.GetString(usernameOrd),
                     reader.GetInt32(chesscomIdOrd),
                     reader.GetString(avatarOrd),
