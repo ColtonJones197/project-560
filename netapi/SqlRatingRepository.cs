@@ -50,6 +50,17 @@ namespace netapi
             }
         }
 
+        /// <summary>
+        /// Gets the full rating history of a player
+        /// </summary>
+        /// <param name="username">The Chesscom Username of the player</param>
+        /// <returns>A list of all rating entries</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public IReadOnlyList<Rating> GetRatingHistory(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public Rating GetRecentRating(int playerId)
         {
             throw new NotImplementedException();

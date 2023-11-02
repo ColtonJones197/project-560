@@ -13,6 +13,8 @@
         public int? Tactics { get; set; }
         public int? Fide { get; set; }
 
+        public DateTime? CreatedOn { get; set; } = null;
+
         public Rating(int ratingId, int playerId, int? daily, int? daily960, int? rapid, int? bullet, int? blitz, int? tactics, int? fide)
         {
             RatingId = ratingId;

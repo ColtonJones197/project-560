@@ -9,5 +9,7 @@ namespace netapi
         Rating GetRecentRating(string username);
         Rating CreateRating(int playerId, int? daily, int? daily960, int? rapid, int? bullet, int? blitz, int? tactics, int? fide);
 
+        IReadOnlyList<Rating> GetRatingHistory(string username);
+
     }
 }
