@@ -93,14 +93,18 @@ namespace netapi
 
             while (reader.Read())
             {
+                var avatar = !reader.IsDBNull(avatarOrd) ? reader.GetString(avatarOrd) : null;
+                var title = !reader.IsDBNull(titleOrd) ? reader.GetString(titleOrd) : null;
+                var status = !reader.IsDBNull(statusOrd) ? reader.GetString(statusOrd) : null;
+                var name = !reader.IsDBNull(nameOrd) ? reader.GetString(nameOrd) : null;
                 players.Add(new Player(
                     reader.GetInt32(playerIdOrd),
                     reader.GetString(usernameOrd),
                     reader.GetInt32(chesscomIdOrd),
-                    reader.GetString(avatarOrd),
-                    reader.GetString(titleOrd),
-                    reader.GetString(statusOrd),
-                    reader.GetString(nameOrd)
+                    avatar,
+                    title,
+                    status,
+                    name
                     ));
             }
 

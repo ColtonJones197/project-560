@@ -15,9 +15,11 @@
 		<span class="welcome">
 			<h1 class="text-8xl">WELCOME</h1>
 		</span>
-
-		to your new<br />SvelteKit app
 	</h1>
+
+	<h2 class="text-4xl">
+		Search for a player:
+	</h2>
 
 	<h2>
 		try editing <strong>src/routes/+page.svelte</strong>
