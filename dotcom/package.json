@@ -25,6 +25,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"dotenv": "^16.3.1",
 		"materialize-css": "^1.0.0-rc.2"
 	}
 }
