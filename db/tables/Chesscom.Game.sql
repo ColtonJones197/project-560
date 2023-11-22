@@ -8,7 +8,7 @@ CREATE TABLE Chesscom.Game(
 	BlackPlayerId INT NOT NULL,
 	Result INT NOT NULL,
 	PGN TEXT NOT NULL,
-	EcoOpening NVARCHAR(12) NOT NULL,
+	EcoOpening NVARCHAR(12),
 	StartTime DATETIME NOT NULL,
 	EndTime DATETIME NOT NULL,
 	TimeControl NVARCHAR(32) NOT NULL,
