@@ -14,7 +14,7 @@ CREATE OR ALTER PROCEDURE Chesscom.CreatePlayerRating
 
 AS
 INSERT Chesscom.PlayerRating(PlayerId, Daily, [960Daily], ChessRapid, ChessBullet, ChessBlitz, Tactics, Fide)
-VALUES(@PlayerId, @Daily, @960Daily, @ChessRapid, @ChessBullet, @ChessBlitz, @Tactics, @Fide); 
+VALUES(@PlayerId, @Daily, @Daily960, @ChessRapid, @ChessBullet, @ChessBlitz, @Tactics, @Fide); 
 
 SET @RatingId = SCOPE_IDENTITY();
 GO
