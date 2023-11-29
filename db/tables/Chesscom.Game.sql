@@ -10,7 +10,7 @@ CREATE TABLE Chesscom.Game(
 	PGN TEXT NOT NULL,
 	EcoOpening NVARCHAR(12),
 	StartTime DATETIME NOT NULL,
-	EndTime DATETIME NOT NULL,
+	EndTime DATETIME,
 	TimeControl NVARCHAR(32) NOT NULL,
 	Rules NVARCHAR(32) NOT NULL,
 	TournamentId INT,
