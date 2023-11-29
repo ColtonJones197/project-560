@@ -1,6 +1,6 @@
 Param(
-   [string] $Server = "(localdb)\MSSQLLocalDb",
-   [string] $Database = "chessdb"
+   [string] $Server = "mssql.cs.ksu.edu",
+   [string] $Database = "ckjones97"
 )
 
 # This script requires the SQL Server module for PowerShell.
@@ -20,8 +20,8 @@ Write-Host "Rebuilding database $Database on $Server..."
 <#
    If on your local machine, you can drop and re-create the database.
 #>
-& ".\Scripts\DropDatabase.ps1" -Database $Database
-& ".\Scripts\CreateDatabase.ps1" -Database $Database
+#& ".\Scripts\DropDatabase.ps1" -Database $Database
+#& ".\Scripts\CreateDatabase.ps1" -Database $Database
 
 <#
    If on the department's server, you don't have permissions to drop or create databases.
