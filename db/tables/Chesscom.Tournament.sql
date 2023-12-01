@@ -15,7 +15,9 @@ CREATE TABLE Chesscom.Tournament(
 	IsRated BIT NOT NULL,
 	IsOfficial BIT NOT NULL,
 	RegisteredUserCount INT NOT NULL,
-	TotalRounds INT NOT NULL
+	TotalRounds INT NOT NULL,
+	CreatedOn DATETIMEOFFSET DEFAULT(SYSDATETIMEOFFSET()),
+	UpdatedOn DATETIMEOFFSET DEFAULT(SYSDATETIMEOFFSET()),
 
 	CONSTRAINT [PK_Chesscom_Tournament_TournamentId] PRIMARY KEY CLUSTERED
       (
