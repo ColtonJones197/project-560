@@ -49,23 +49,25 @@ namespace netapi.Controllers
                 JsonElement allGameJson =
                     await JsonSerializer.DeserializeAsync<JsonElement>(gameStream);
                 var games = allGameJson.GetProperty("games").Deserialize<GameRecord[]>();
-
-                foreach(GameRecord game in games)
+                var gameRepo = new SqlGameRepository(connectionString);
+                foreach (GameRecord game in games)
                 {
-                    var gameRepo = new SqlGameRepository(connectionString);
+                    try
+                    {
+                        
 
-                    //add white and black players to db if needed which maybe it is who knows lol
-                    string whiteUser = game.white.GetProperty("username").Deserialize<string>();
-                    string blackUser = game.black.GetProperty("username").Deserialize<string>();
-                    
-                    await TryAddPlayer(whiteUser);
-                    await TryAddPlayer(blackUser);
+                        //add white and black players to db if needed which maybe it is who knows lol
+                        string whiteUser = game.white.GetProperty("username").Deserialize<string>();
+                        string blackUser = game.black.GetProperty("username").Deserialize<string>();
 
-                    string opening = GetOpeningFromPgn(game.pgn);
-                    int result = GetResultFromPgn(game.pgn);
-                    DateTime endTime = DateTimeOffset.FromUnixTimeSeconds(game.end_time).DateTime;
-                    //try
-                    //{
+                        await TryAddPlayer(whiteUser);
+                        await TryAddPlayer(blackUser);
+
+                        string opening = GetOpeningFromPgn(game.pgn);
+                        int result = GetResultFromPgn(game.pgn);
+                        DateTime endTime = DateTimeOffset.FromUnixTimeSeconds(game.end_time).DateTime;
+                        //try
+                        //{
                         Game added = gameRepo.CreateGame(
                         game.url,
                         whiteUser,
@@ -81,6 +83,12 @@ namespace netapi.Controllers
                         );
 
                         allGames.Add(added);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine("Failed");
+                    }
+                    
                     //}
                     //catch(Exception e)
                     //{
