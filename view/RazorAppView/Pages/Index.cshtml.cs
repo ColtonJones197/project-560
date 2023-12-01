@@ -12,9 +12,10 @@ namespace RazorAppView.Pages
             _logger = logger;
         }
 
+        IEnumerable<Player> players { get; set; }
         public void OnGet()
         {
-
+            //players = new ChessPlayerDatabase().players;
         }
     }
 }
