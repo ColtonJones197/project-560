@@ -41,6 +41,7 @@ Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "tables\Che
 
 Write-Host "Functions..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "functions\Chesscom.PlayerIdToUsername.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "functions\Chesscom.AllGamesForPlayerByColor.sql"
 
 Write-Host "Stored procedures..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "procedures\Chesscom.CreateGame.sql"
