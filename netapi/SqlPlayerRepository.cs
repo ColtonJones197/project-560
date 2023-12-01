@@ -17,7 +17,7 @@ namespace netapi
             this.connectionString = connectionString;
         }
 
-        public Player CreatePlayer(string username, int chesscomId, string? avatar, string? title, string? status, string? name)
+        public Player? CreatePlayer(string username, int chesscomId, string? avatar, string? title, string? status, string? name)
         {
             if (string.IsNullOrWhiteSpace(username))
                 throw new ArgumentException("The parameter cannot be null or empty", nameof(username));
@@ -41,9 +41,17 @@ namespace netapi
                         p.Direction = ParameterDirection.Output;
 
                         //var p = command.Parameters //might want to add an output to the procedure
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        transaction.Complete();
+                        try
+                        {
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            transaction.Complete();
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine(e);
+                            return null;
+                        }
 
                         var playerId = (int)command.Parameters["PlayerId"].Value;
 

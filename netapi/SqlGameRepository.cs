@@ -32,8 +32,9 @@ namespace netapi
                         command.Parameters.AddWithValue("EcoOpening", opening);
                         command.Parameters.AddWithValue("StartTime", startTime);
                         command.Parameters.AddWithValue("EndTime", endTime);
-                        command.Parameters.AddWithValue("Rules", timeControl);
-                        command.Parameters.AddWithValue("TournamentId", rules);
+                        command.Parameters.AddWithValue("TimeControl", timeControl);
+                        command.Parameters.AddWithValue("Rules", rules);
+                        command.Parameters.AddWithValue("TournamentUrl", tournamentId);
 
                         var p = command.Parameters.Add("GameId", SqlDbType.Int);
                         p.Direction = ParameterDirection.Output;
