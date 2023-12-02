@@ -55,6 +55,7 @@ Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "procedures
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "procedures\Chesscom.PlayerWinRatesByOpening.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "procedures\Chesscom.RemoveGame.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "procedures\Chesscom.RemovePlayer.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "procedures\Chesscom.PlayerHeadToHead.sql"
 
 Write-Host "Inserting data..."
 #Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData\Sql\Data\Person.AddressType.sql"
