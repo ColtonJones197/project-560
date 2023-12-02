@@ -9,6 +9,7 @@
 	-	GamesWon
 	-	GamesDrawn
 	-	GamesLost
+	-	WinRate
 */
 
 CREATE OR ALTER PROCEDURE Chesscom.WinRateByPlayer
